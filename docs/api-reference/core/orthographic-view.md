@@ -1,8 +1,16 @@
 # OrthographicView
 
-The [`OrthographicView`] class is a subclass of [View](/docs/api-reference/core/view.md) that creates a top-down view of the XY plane. It is usually used for rendering 2D charts in non-geospatial use cases.
+The `OrthographicView` class is a subclass of [View](/docs/api-reference/core/view.md) that creates a top-down view of the XY plane. It is usually used for rendering 2D charts in non-geospatial use cases.
 
 It's recommended that you read the [Views and Projections guide](/docs/developer-guide/views.md) before using this class.
+
+<div style="position:relative;height:450px"></div>
+<div style="position:absolute;transform:translateY(-450px);padding-left:inherit;padding-right:inherit;left:0;right:0">
+  <iframe height="450" style="width: 100%;" scrolling="no" title="deck.gl OrthographicView" src="https://codepen.io/vis-gl/embed/YzpXqzv?height=450&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href='https://codepen.io/vis-gl/pen/YzpXqzv'>deck.gl OrthographicView</a> by vis.gl
+    (<a href='https://codepen.io/vis-gl'>@vis-gl</a>) on <a href='https://codepen.io'>CodePen</a>.
+  </iframe>
+</div>
 
 
 ## Constructor
@@ -14,7 +22,9 @@ const view = new OrthographicView({id, ...});
 
 `OrthographicView` takes the same parameters as the [View](/docs/api-reference/core/view.md) superclass constructor, plus the following:
 
-- `flipY` (`Boolean`) - Whether to use top-left coordinates (`true`) or bottom-left coordinates (`false`). Default `true`.
+##### `flipY` (Boolean)
+
+Whether to use top-left coordinates (`true`) or bottom-left coordinates (`false`). Default `true`.
 
 
 ## View State
@@ -27,7 +37,7 @@ To render, `OrthographicView` needs to be used together with a `viewState` with 
 * `maxZoom` (Number, optional) - The max zoom level of the viewport. Default `Infinity`.
 
 
-## OrthographicController
+## Controller
 
 By default, `OrthographicView` uses the `OrthographicController` to handle interactivity. To enable the controller, use:
 
@@ -35,25 +45,7 @@ By default, `OrthographicView` uses the `OrthographicController` to handle inter
 const view = new OrthographicView({id: '2d-scene', controller: true});
 ```
 
-`OrthographicController` supports the following interactions:
-
-- `dragPan`: Drag to pan
-- `scrollZoom`: Mouse wheel to zoom
-- `doubleClickZoom`: Double click to zoom in, with shift/ctrl down to zoom out
-- `touchZoom`: Pinch zoom
-- `keyboard`: Keyboard (arrow keys to pan, +/- to zoom)
-
-You can further customize its behavior by extending the class:
-
-```js
-import {OrthographicView} from '@deck.gl/core';
-
-class MyOrthographicView extends OrthographicView {}
-
-const view = new OrthographicView({id: '3d-scene', controller: MyOrthographicView});
-```
-
-See the documentation of [Controller](/docs/api-reference/core/controller.md) for implementation details.
+Visit the [OrthographicController](/docs/api-reference/core/orthographic-controller.md) documentation for a full list of supported options.
 
 
 ## Source

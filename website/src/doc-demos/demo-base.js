@@ -4,7 +4,7 @@ import {StaticMap} from 'react-map-gl';
 import styled from 'styled-components';
 
 import {MAPBOX_STYLES} from '../constants/defaults';
-import {gotoSource} from './codepen-automation';
+import {gotoLayerSource} from './codepen-automation';
 
 const INITIAL_VIEW_STATE = {
   longitude: -122.4,
@@ -70,8 +70,20 @@ svg {
 }
 `;
 
-export default function makeLayerDemo(config) {
-  const {Layer, getTooltip, props, mapStyle = MAPBOX_STYLES.LIGHT, imports} = config;
+function evalObject(source, globals, output) {
+  return eval(`(function evalObject(globals){
+    const _global = typeof global === 'undefined' ? self : global;
+    Object.assign(_global, globals);
+    ${
+      output ? `${source}
+      return {${output.join(',')}};` : `return ${source};`
+    }
+  })`)(globals);
+}
+
+export function makeLayerDemo(config) {
+  const {Layer, getTooltip, props, mapStyle = MAPBOX_STYLES.LIGHT, initialViewState = INITIAL_VIEW_STATE, imports} = config;
+  config.initialViewState = initialViewState;
 
   function Demo() {
     const _getTooltip = getTooltip && eval(getTooltip);
@@ -83,11 +95,7 @@ export default function makeLayerDemo(config) {
       };
     };
 
-    const layerProps = eval(`(function getProps(globals){
-      const _global = typeof global === 'undefined' ? self : global;
-      Object.assign(_global, globals);
-      return ${props};
-    })`)(imports);
+    const layerProps = evalObject(props, imports);
     const layer = new Layer(layerProps);
 
     return (
@@ -95,7 +103,7 @@ export default function makeLayerDemo(config) {
         <DemoContainer>
           <DeckGL
             pickingRadius={5}
-            initialViewState={INITIAL_VIEW_STATE}
+            initialViewState={initialViewState}
             getTooltip={styledGetTooltip}
             controller={true}
             layers={[layer]}
@@ -103,7 +111,7 @@ export default function makeLayerDemo(config) {
             {mapStyle && <StaticMap reuseMaps mapStyle={mapStyle} preventStyleDiffing={true} />}
           </DeckGL>
         </DemoContainer>
-        <DemoSourceLink onClick={() => gotoSource(layer, config, INITIAL_VIEW_STATE)}>
+        <DemoSourceLink onClick={() => gotoLayerSource(config, layer)}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
           Edit on Codepen
         </DemoSourceLink>

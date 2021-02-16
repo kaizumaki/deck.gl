@@ -1,8 +1,16 @@
 # FirstPersonView
 
-The [`FirstPersonView`] class is a subclass of [View](/docs/api-reference/core/viewport.md) that describes a camera placed at a provided location, looking **towards** the direction and orientation specified by `viewState`. The behavior is similar to that of a [first-person game](https://en.wikipedia.org/wiki/First-person_(gaming)).
+The `FirstPersonView` class is a subclass of [View](/docs/api-reference/core/viewport.md) that describes a camera placed at a provided location, looking **towards** the direction and orientation specified by `viewState`. The behavior is similar to that of a [first-person game](https://en.wikipedia.org/wiki/First-person_(gaming)).
 
 It's recommended that you read the [Views and Projections guide](/docs/developer-guide/views.md) before using this class.
+
+<div style="position:relative;height:450px"></div>
+<div style="position:absolute;transform:translateY(-450px);padding-left:inherit;padding-right:inherit;left:0;right:0">
+  <iframe height="450" style="width: 100%;" scrolling="no" title="deck.gl FirstPersonView" src="https://codepen.io/vis-gl/embed/oNYXxNE?height=450&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href='https://codepen.io/vis-gl/pen/oNYXxNE'>deck.gl FirstPersonView</a> by vis.gl
+    (<a href='https://codepen.io/vis-gl'>@vis-gl</a>) on <a href='https://codepen.io'>CodePen</a>.
+  </iframe>
+</div>
 
 
 ## Constructor
@@ -28,35 +36,15 @@ To render, a `FirstPersonView` needs to be combined with a `viewState` object wi
 - `minPitch` (Number, optional) - min pitch angle. Default `-90` (up).
 
 
-## FirstPersonController
+## Controller
 
 By default, `FirstPersonView` uses the `FirstPersonController` to handle interactivity. To enable the controller, use:
 
 ```js
-const view = new FirstPersonView({id: 'first-person', controller: true});
+const view = new FirstPersonView({id: 'pov', controller: true});
 ```
 
-`FirstPersonController` supports the following interactions:
-
-- `dragRotate`: Drag to rotate
-- `scrollZoom`: Mouse wheel to zoom
-- `doubleClickZoom`: Double click to zoom in, with shift/ctrl down to zoom out
-- `touchZoom`: Pinch zoom
-- `touchRotate`: Multi-touch rotate
-- `keyboard`: Keyboard (arrow keys to move camera, arrow keys with shift/ctrl down to rotate, +/- to zoom)
-
-You can further customize its behavior by extending the class:
-
-```js
-import {FirstPersonController} from '@deck.gl/core';
-
-class MyFirstPersonController extends FirstPersonController {}
-
-const view = new FirstPersonView({id: 'first-person', controller: MyFirstPersonController});
-```
-
-See the documentation of [Controller](/docs/api-reference/core/controller.md) for implementation details.
-
+Visit the [FirstPersonController](/docs/api-reference/core/first-person-controller.md) documentation for a full list of supported options.
 
 ## Source
 

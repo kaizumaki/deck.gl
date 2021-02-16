@@ -18,7 +18,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import assert from '../utils/assert';
 import {deepEqual} from '../utils/deep-equal';
 import log from '../utils/log';
 import {flatten} from '../utils/flatten';
@@ -198,7 +197,6 @@ export default class ViewManager {
   }
 
   _setSize(width, height) {
-    assert(Number.isFinite(width) && Number.isFinite(height));
     if (width !== this.width || height !== this.height) {
       this.width = width;
       this.height = height;
@@ -251,7 +249,11 @@ export default class ViewManager {
       // Set an internal callback that calls the prop callback if provided
       onViewStateChange: this._onViewStateChange.bind(this, props.id),
       onStateChange: this._eventCallbacks.onInteractionStateChange,
-      makeViewport: view._getViewport.bind(view),
+      makeViewport: viewState =>
+        view._getViewport(viewState, {
+          width: viewState.width,
+          height: viewState.height
+        }),
       ...props
     });
 

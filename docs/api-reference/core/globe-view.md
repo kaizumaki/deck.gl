@@ -6,6 +6,15 @@ The `GlobeView` class is a subclass of [View](/docs/api-reference/core/view.md).
 
 It's recommended that you read the [Views and Projections guide](/docs/developer-guide/views.md) before using this class.
 
+<div style="position:relative;height:450px"></div>
+<div style="position:absolute;transform:translateY(-450px);padding-left:inherit;padding-right:inherit;left:0;right:0">
+  <iframe height="450" style="width: 100%;" scrolling="no" title="deck.gl GlobeView" src="https://codepen.io/vis-gl/embed/JjbdXjr?height=450&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href='https://codepen.io/vis-gl/pen/JjbdXjr'>deck.gl GlobeView</a> by vis.gl
+    (<a href='https://codepen.io/vis-gl'>@vis-gl</a>) on <a href='https://codepen.io'>CodePen</a>.
+  </iframe>
+</div>
+
+
 ## Limitations
 
 The goal of `GlobeView` is to provide a generic solution to rendering and navigating data in the 3D space.
@@ -32,7 +41,9 @@ const view = new GlobeView({id, ...});
 
 `GlobeView` takes the same parameters as the [View](/docs/api-reference/core/view.md) superclass constructor, plus the following:
 
-- `resolution` (Number, optional) - the resolution at which to turn flat features into 3D meshes, in degrees. Smaller numbers will generate more detailed mesh. Default `10`.
+##### `resolution` (Number, optional)
+
+The resolution at which to turn flat features into 3D meshes, in degrees. Smaller numbers will generate more detailed mesh. Default `10`.
 
 
 ## View State
@@ -50,7 +61,7 @@ Additional projection matrix arguments:
 + `nearZMultiplier` (Number, optional) - Scaler for the near plane, 1 unit equals to the height of the viewport. Default to `0.1`.
 + `farZMultiplier` (Number, optional) - Scaler for the far plane, 1 unit equals to the distance from the camera to the edge of the screen. Default to `2`.
 
-## GlobeController
+## Controller
 
 By default, `GlobeView` uses the `GlobeController` to handle interactivity. To enable the controller, use:
 
@@ -58,25 +69,7 @@ By default, `GlobeView` uses the `GlobeController` to handle interactivity. To e
 const view = new GlobeView({id: 'globe', controller: true});
 ```
 
-`GlobeController` supports the following interactions:
-
-- `dragPan`: Drag to pan
-- `scrollZoom`: Mouse wheel to zoom
-- `doubleClickZoom`: Double click to zoom in, with shift/ctrl down to zoom out
-- `touchZoom`: Pinch zoom
-- `keyboard`: Keyboard (arrow keys to pan, +/- to zoom)
-
-You can further customize its behavior by extending the class:
-
-```js
-import {_GlobeController as GlobeController} from '@deck.gl/core';
-
-class MyGlobeController extends GlobeController {}
-
-const view = new GlobeView({id: 'globe', controller: MyGlobeController});
-```
-
-See the documentation of [Controller](/docs/api-reference/core/controller.md) for implementation details.
+Visit the [GlobeController](/docs/api-reference/core/globe-controller.md) documentation for a full list of supported options.
 
 
 # Remarks
