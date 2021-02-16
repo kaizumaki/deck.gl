@@ -2,6 +2,36 @@
 
 This page contains highlights of each deck.gl release. Also check our [vis.gl blog](https://medium.com/vis-gl) for news about new releases and features in deck.gl.
 
+## deck.gl v8.5
+
+Release date: TBD
+
+
+<table style="border: 0;" align="center">
+  <tbody>
+    <tr>
+      <td>
+        <img style="max-height:200px" src="https://github.com/visgl/deck.gl-data/blob/master/images/whats-new/text-layer-styling.gif?raw=true" />
+        <p><i>TextLayer styling</i></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### TextLayer
+
+New props are added for more flexible styling of the texts:
+
+* `background`
+* `backgroundPadding`
+* `outlineWidth`
+* `outlineColor`
+* `getBackgroundColor`
+* `getBorderWidth`
+* `getBorderColor`
+
+See [documentation](/docs/api-reference/layers/text-layer.md) for details.
+
 ## deck.gl v8.4
 
 Release date: Jan 31, 2021
