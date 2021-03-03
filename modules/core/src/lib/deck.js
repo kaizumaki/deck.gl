@@ -159,7 +159,6 @@ export default class Deck {
     this.deckPicker = null;
 
     this._needsRedraw = true;
-
     this._pickRequest = {};
     // Pick and store the object under the pointer on `pointerdown`.
     // This object is reused for subsequent `onClick` and `onDrag*` callbacks.
