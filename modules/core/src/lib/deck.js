@@ -160,9 +160,6 @@ export default class Deck {
 
     this._needsRedraw = true;
 
-    // Indicates that GPU context is lost and any rendering/interactions should be ignored
-    this._contextLost = false;
-
     this._pickRequest = {};
     // Pick and store the object under the pointer on `pointerdown`.
     // This object is reused for subsequent `onClick` and `onDrag*` callbacks.
@@ -268,10 +265,6 @@ export default class Deck {
   }
 
   setProps(props) {
-    if (this._contextLost) {
-      return;
-    }
-
     this.stats.get('setProps Time').timeStart();
 
     if ('onLayerHover' in props) {
@@ -726,10 +719,6 @@ export default class Deck {
   }
 
   _onRenderFrame(animationProps) {
-    if (this._contextLost) {
-      return;
-    }
-
     this._getFrameStats();
 
     // Log perf stats every second
@@ -827,10 +816,6 @@ export default class Deck {
   }
 
   _onPointerDown(event) {
-    if (this._contextLost) {
-      return;
-    }
-
     const pos = event.offsetCenter;
     this._lastPointerDownInfo = this.pickObject({
       x: pos.x,
@@ -840,18 +825,12 @@ export default class Deck {
   }
 
   _onWebGLContextLost(event) {
-    this._contextLost = true;
-
     if (this.props.onError) {
       this.props.onError(event);
     }
   }
 
-  _onWebGLContextRestored(event) {
-    // TODO restore WebGL resources
-
-    this._contextLost = false;
-  }
+  _onWebGLContextRestored(event) {}
 
   _getFrameStats() {
     const {stats} = this;
