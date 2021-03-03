@@ -17,7 +17,85 @@ Each version should:
 Ref: http://keepachangelog.com/en/0.3.0/
 -->
 
+## deck.gl v8.5
+
+### deck.gl v8.5 Prereleases
+
+#### deck.gl [8.5.0-alpha.3] - Feb 25 2021
+
+- Bump luma.gl dependencies to 8.5.0-alpha (#5535)
+- Change build targets (#5528)
+- Bump loaders version to 3.0.0-alpha (#5531)
+- Syntax pass (#5520)
+- Update dev setup to support modern JS syntax (#5517)
+
+#### deck.gl [8.5.0-alpha.2] - Feb 22 2021
+
+- PathLayer: separate joint type and cap type props (#5508)
+- [react] Fix flickering in React.StrictMode (#5511)
+- Clear tooltip when viewport changes (#5509)
+
+#### deck.gl [8.5.0-alpha.1] - Feb 19 2021
+
+- Migrate DeckGL to functional component (#5495)
+- LayerManager: avoid layer update during setProps (#5494)
+- Add outline rendering to TextLayer (#5483)
+- Add background rendering to TextLayer (#5460)
+- Clean up assertions in core and layer modules (#5480)
+- Standardize autoHighlight logic in CompositeLayer (#5454)
+
 ## deck.gl v8.4
+
+#### deck.gl [8.4.9] - Feb 25 2021
+
+- Fix zero height arc rendering between coordinates with different z components (#5527)
+
+#### deck.gl [8.4.8] - Feb 23 2021
+
+- Fix TileLayer fetch options (#5521)
+- Force OrbitView/OrthographicView to create non-geospatial viewports (#5525)
+
+#### deck.gl [8.4.7] - Feb 19 2021
+
+- Force using a single loader for MVT data (#5507)
+- Fix picking color values coming from a reallocated buffer (#5503)
+
+#### deck.gl [8.4.6] - Feb 16 2021
+
+- Fix for inconsistent column geometry's top cap winding order (#5492)
+- Tile3DLayer - fix render when normals are missing (#5485)
+
+#### deck.gl [8.4.5] - Feb 12 2021
+
+- Bump loaders.gl dependencies (#5477)
+- Fix ArcLayer with wrapLongitude:true at high zoom (#5478)
+
+#### deck.gl [8.4.4] - Feb 12 2021
+
+- MVT: fix picking non-binary (#5471)
+
+#### deck.gl [8.4.3] - Feb 10 2021
+
+- Fix MVTLayer loader propagation (#5455)
+- Restore default transitionInterpolator (#5459)
+
+#### deck.gl [8.4.2] - Feb 5 2021
+
+- Bump luma.gl dependencies (#5441)
+- Fix drawPickingColors usability (#5437)
+- Fix FillStyleExtension bugs (#5438)
+
+#### deck.gl [8.4.1] - Feb 3 2021
+
+- Fix controller.makeViewport when using percentage dimensions (#5431)
+
+#### deck.gl [8.4.0] - Feb 1 2021
+
+- Bump luma.gl to 8.4.0 (#5416)
+- Fix FirstPersonView "matrix not invertible" error at pitch=-90 (#5415)
+- Orbit and Ortho viewports pass additional props to the Viewport constructor (#5407)
+- Avoid silencing errors by default in CartoLayer (#5402)
+- Fix TerrainLayer error (#5404)
 
 ### deck.gl v8.4 Prereleases
 

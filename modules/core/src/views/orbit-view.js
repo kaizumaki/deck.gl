@@ -52,6 +52,9 @@ class OrbitViewport extends Viewport {
 
     super({
       ...props,
+      // in case viewState contains longitude/latitude values,
+      // make sure that the base Viewport class does not treat this as a geospatial viewport
+      longitude: null,
       viewMatrix: getViewMatrix({
         height,
         fovy,
@@ -69,11 +72,10 @@ class OrbitViewport extends Viewport {
 
 export default class OrbitView extends View {
   constructor(props) {
-    super(
-      Object.assign({}, props, {
-        type: OrbitViewport
-      })
-    );
+    super({
+      ...props,
+      type: OrbitViewport
+    });
   }
 
   get controller() {
